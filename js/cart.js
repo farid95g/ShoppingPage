@@ -29,6 +29,7 @@ if (cart.length === 0) {
         let nameCell = document.createElement("td");
         let priceCell = document.createElement("td");
         let quantityCell = document.createElement("td");
+        let proQuantity = document.createElement("span");
         let removeCell = document.createElement("td");
         let img = document.createElement("img");
         let removeButton = document.createElement("a");
@@ -41,15 +42,57 @@ if (cart.length === 0) {
         img.setAttribute("src", "../" + product.img);
         nameCell.innerText = product.name;
         nameCell.className = "align-middle";
-        priceCell.innerText = `$${product.price} * ${product.quantity} = $${product.price * product.quantity}`;
+        priceCell.innerText = `$${product.price} * ${product.quantity} = $${(product.price * product.quantity).toFixed(2)}`;
         priceCell.className = "align-middle";
-        quantityCell.innerText = product.quantity;
+        proQuantity.innerText = product.quantity;
+        let quantityStyle = "padding: 0 10px; font-size: 18px; font-weight: bold";
+        proQuantity.setAttribute("style", quantityStyle);
         quantityCell.className = "align-middle";
         removeButton.setAttribute("href", "#");
         removeButton.innerHTML = "<i class='fas fa-trash-alt'></i>";
         removeCell.className = "align-middle";
         let removeStyle = "font-size: 20px; text-decoration: none; color: #000";
         removeButton.setAttribute("style", removeStyle);
+
+        // buttons for incrementing and decrementing the quantity of the product purchased
+        let decrement = document.createElement("i");
+        let increment = document.createElement("i");
+        decrement.className = "fas fa-minus";
+        increment.className = "fas fa-plus";
+        decrement.onclick = function() {
+            if (this.nextElementSibling.innerText == 1) {
+                cart.splice(cart.indexOf(cart.find(p => p.id === product.id)), 1);
+                localStorage.setItem("cart", JSON.stringify(cart));
+                this.parentElement.parentElement.remove();
+                if (cart.length === 0) {
+                    table.style.display = "none";
+                    emptyCart();
+                }
+                total = 0;
+                cart.forEach(p => total += p.quantity * p.price);
+                totalPrice.innerText = total.toFixed(2);
+            } else {
+                let index = cart.indexOf(cart.find(p => p.id === product.id));
+                cart[index].quantity--;
+                proQuantity.innerText = product.quantity;
+                priceCell.innerText = `$${product.price} * ${product.quantity} = $${(product.price * product.quantity).toFixed(2)}`;
+                total = 0;
+                cart.forEach(p => total += p.quantity * p.price);
+                totalPrice.innerText = total.toFixed(2);
+                localStorage.setItem("cart", JSON.stringify(cart));
+            }
+        }
+
+        increment.onclick = () => {
+            let index = cart.indexOf(cart.find(p => p.id === product.id));
+            cart[index].quantity++;
+            proQuantity.innerText = product.quantity;
+            priceCell.innerText = `$${product.price} * ${product.quantity} = $${product.price * product.quantity}`;
+            total = 0;
+            cart.forEach(p => total += p.quantity * p.price);
+            totalPrice.innerText = total.toFixed(2);
+            localStorage.setItem("cart", JSON.stringify(cart));
+        }
 
         // adding click event to remove buttons
         removeButton.onclick = function(e) {
@@ -69,6 +112,7 @@ if (cart.length === 0) {
 
         // appending elements to the parent elements
         imgCell.appendChild(img);
+        quantityCell.append(decrement, proQuantity, increment);
         removeCell.appendChild(removeButton);
         row.append(orderCell, imgCell, nameCell, priceCell, quantityCell, removeCell);
         table.lastElementChild.appendChild(row);

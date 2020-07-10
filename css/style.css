@@ -15,6 +15,10 @@
     background-color: #776f6f;
 }
 
+i {
+    cursor: pointer;
+}
+
 #logo {
     display: flex;
     justify-content: space-between;
