@@ -10,8 +10,9 @@ let cart = JSON.parse(localStorage.getItem("cart"));
 let products = document.querySelector("#products-list");
 let table = document.querySelector("table");
 
-// the number for order of the products in the table
+// the number for order of the products in the table and total price
 let order = 1;
+let total = 0;
 
 // creating the view of the cart page according to the cart length
 if (cart.length === 0) {
@@ -40,7 +41,7 @@ if (cart.length === 0) {
         img.setAttribute("src", "../" + product.img);
         nameCell.innerText = product.name;
         nameCell.className = "align-middle";
-        priceCell.innerText = "$" + product.price;
+        priceCell.innerText = `$${product.price} * ${product.quantity} = $${product.price * product.quantity}`;
         priceCell.className = "align-middle";
         quantityCell.innerText = product.quantity;
         quantityCell.className = "align-middle";
@@ -61,6 +62,9 @@ if (cart.length === 0) {
                 emptyCart();
             }
             productQuantity();
+            total = 0;
+            cart.forEach(p => total += p.quantity * p.price);
+            totalPrice.innerText = total.toFixed(2);
         }
 
         // appending elements to the parent elements
@@ -69,6 +73,21 @@ if (cart.length === 0) {
         row.append(orderCell, imgCell, nameCell, priceCell, quantityCell, removeCell);
         table.lastElementChild.appendChild(row);
     });
+
+    // adding last table cell for showing the total price of purchased items
+    let totalPriceRow = document.createElement("tr");
+    let totalPriceCell = document.createElement("td");
+    totalPriceCell.setAttribute("colspan", "6");
+    totalPriceCell.classList.add("text-right");
+    cart.forEach(p => total += p.quantity * p.price);
+    totalPriceCell.innerHTML = `<span style="font-size: 20px; margin-right: 20px;">Total Price:</span>`;
+    let totalPrice = document.createElement("span");
+    totalPrice.style.fontWeight = "bold";
+    totalPrice.style.fontSize = "20px";
+    totalPrice.innerText = total.toFixed(2);
+    totalPriceCell.appendChild(totalPrice);
+    totalPriceRow.appendChild(totalPriceCell);
+    table.appendChild(totalPriceRow);
 }
 
 // function for changing the product quantity near the shopping cart icon
