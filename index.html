@@ -39,7 +39,7 @@
                     <li class="nav-item mr-3 active">
                         <a class="nav-link" href="#" tabindex="-1" id="cart">
                             <i class="fas fa-shopping-cart"></i>
-                            <span>0</span> <!-- product quantity -->
+                            <span id="productQuantity">0</span> <!-- product quantity -->
                         </a>
                     </li>
                 </ul>
@@ -51,59 +51,60 @@
     <!-- products section starts here -->
     <main class="mt-5 mb-5 container">
         <div class="d-flex flex-wrap">
-            <div class="card product mt-3 mb-3">
+            <div class="card product mt-3 mb-3" id="product1">
                 <img src="images/1.jpeg" class="card-img-top ml-auto mr-auto" alt="...">
                 <div class="card-body text-center product-info">
                     <h5 class="card-title">Acer Nitro 17.3"</h5>
                     <p>$<span>749.99</span></p>
-                    <a href="#" class="btn btn-primary btn-block">Add to Cart</a>
+                    <a href="#" class="btn btn-primary btn-block add">Add to Cart</a>
                 </div>
             </div>
-            <div class="card product mt-3 mb-3">
+            <div class="card product mt-3 mb-3" id="product2">
                 <img src="images/2.png" class="card-img-top ml-auto mr-auto" alt="...">
                 <div class="card-body text-center product-info">
                     <h5 class="card-title">HP Pavilion 15.6"</h5>
                     <p>$<span>813.36</span></p>
-                    <a href="#" class="btn btn-primary btn-block">Add to Cart</a>
+                    <a href="#" class="btn btn-primary btn-block add">Add to Cart</a>
                 </div>
             </div>
-            <div class="card product mt-3 mb-3">
+            <div class="card product mt-3 mb-3" id="product3">
                 <img src="images/3.jpeg" class="card-img-top ml-auto mr-auto" alt="...">
                 <div class="card-body text-center product-info">
                     <h5 class="card-title">ASUS ROG Strix 15.6"</h5>
                     <p>$<span>899.00</span></p>
-                    <a href="#" class="btn btn-primary btn-block">Add to Cart</a>
+                    <a href="#" class="btn btn-primary btn-block add">Add to Cart</a>
                 </div>
             </div>
-            <div class="card product mt-3 mb-3">
+            <div class="card product mt-3 mb-3" id="product4">
                 <img src="images/4.jpeg" class="card-img-top ml-auto mr-auto" alt="...">
                 <div class="card-body text-center product-info">
                     <h5 class="card-title">MSI GL63 9SDK-879 15.6"</h5>
                     <p>$<span>1429.99</span></p>
-                    <a href="#" class="btn btn-primary btn-block">Add to Cart</a>
+                    <a href="#" class="btn btn-primary btn-block add">Add to Cart</a>
                 </div>
             </div>
-            <div class="card product mt-3 mb-3">
+            <div class="card product mt-3 mb-3" id="product5">
                 <img src="images/5.jpeg" class="card-img-top ml-auto mr-auto" alt="...">
                 <div class="card-body text-center product-info">
                     <h5 class="card-title">Acer Predator Helios 700 PH717-71-75RX 17.3"</h5>
                     <p>$<span>2499.99</span></p>
-                    <a href="#" class="btn btn-primary btn-block">Add to Cart</a>
+                    <a href="#" class="btn btn-primary btn-block add">Add to Cart</a>
                 </div>
             </div>
-            <div class="card product mt-3 mb-3">
+            <div class="card product mt-3 mb-3" id="product6">
                 <img src="images/6.jpeg" class="card-img-top ml-auto mr-auto" alt="...">
                 <div class="card-body text-center product-info">
                     <h5 class="card-title">Omen by HP 15.6" Gaming Laptop</h5>
                     <p>$<span>1125.99</span></p>
-                    <a href="#" class="btn btn-primary btn-block">Add to Cart</a>
+                    <a href="#" class="btn btn-primary btn-block add">Add to Cart</a>
                 </div>
             </div>
         </div>
     </main>
     <!-- products section ends here -->
 
-
+    <!-- javascript files and necessary links -->
+    <script src="js/app.js"></script>
     <script src="https://kit.fontawesome.com/3f7e3de7b3.js" crossorigin="anonymous"></script>
 </body>
 </html>
