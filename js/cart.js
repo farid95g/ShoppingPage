@@ -92,6 +92,8 @@ function emptyCart() {
     table.style.display = "none";
     let message = document.createElement("h1");
     message.style.padding = "200px 0";
+    message.style.border = "2px dashed rgb(167, 161, 161)";
+    message.style.borderRadius = "10px";
     message.innerHTML = `<p style="text-align: center;">There is no item in your cart. <br /><br /> Go <a href="../index.html">ahead</a> and add something...</p>`;
     products.appendChild(message);
 }
