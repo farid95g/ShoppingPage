@@ -10,14 +10,14 @@ let cart = JSON.parse(localStorage.getItem("cart"));
 let products = document.querySelector("#products-list");
 let table = document.querySelector("table");
 
-// the number for order of the products in the table and total price
+// the number for order of the products in the table and the number for total price
 let order = 1;
 let total = 0;
 
 // creating the view of the cart page according to the cart length
-if (cart.length === 0) {
+if (cart.length === 0) {  // if there are no items in the cart
     emptyCart();
-} else {
+} else {  // if there are items in the cart
     cart.forEach(product => {
         //showing table element
         table.classList.remove("d-none");
@@ -29,36 +29,38 @@ if (cart.length === 0) {
         let nameCell = document.createElement("td");
         let priceCell = document.createElement("td");
         let quantityCell = document.createElement("td");
-        let proQuantity = document.createElement("span");
         let removeCell = document.createElement("td");
-        let img = document.createElement("img");
-        let removeButton = document.createElement("a");
 
-        // filling the elements with the products' datas
-        orderCell.setAttribute("scope", "row");
-        orderCell.className = "align-middle";
-        orderCell.innerText = order;
-        order++;
+        // creating the elements that will be located inside the table cells
+        let img = document.createElement("img");
+        let proQuantity = document.createElement("span");
+        let removeButton = document.createElement("a");
+        // filling the elements above with the necessary data
         img.setAttribute("src", "../" + product.img);
-        nameCell.innerText = product.name;
-        nameCell.className = "align-middle";
-        priceCell.innerText = `$${product.price} * ${product.quantity} = $${(product.price * product.quantity).toFixed(2)}`;
-        priceCell.className = "align-middle";
         proQuantity.innerText = product.quantity;
         let quantityStyle = "padding: 0 10px; font-size: 18px; font-weight: bold";
         proQuantity.setAttribute("style", quantityStyle);
-        quantityCell.className = "align-middle";
         removeButton.setAttribute("href", "#");
         removeButton.innerHTML = "<i class='fas fa-trash-alt'></i>";
-        removeCell.className = "align-middle";
         let removeStyle = "font-size: 20px; text-decoration: none; color: #000";
         removeButton.setAttribute("style", removeStyle);
+
+        // filling the table cells with the products' datas
+        [orderCell, imgCell, nameCell, priceCell, quantityCell, removeCell].forEach(cell => {
+            cell.classList.add("align-middle");
+        });
+        orderCell.setAttribute("scope", "row");
+        orderCell.innerText = order++;
+        nameCell.innerText = product.name;
+        priceCell.innerText = `$${product.price} * ${product.quantity} = $${(product.price * product.quantity).toFixed(2)}`;
 
         // buttons for incrementing and decrementing the quantity of the product purchased
         let decrement = document.createElement("i");
         let increment = document.createElement("i");
         decrement.className = "fas fa-minus";
         increment.className = "fas fa-plus";
+
+        // adding function to decrement button that will decrement the quantity of the product on click of the button
         decrement.onclick = function() {
             if (this.nextElementSibling.innerText == 1) {
                 cart.splice(cart.indexOf(cart.find(p => p.id === product.id)), 1);
@@ -83,6 +85,7 @@ if (cart.length === 0) {
             }
         }
 
+        // adding function to increment button that will increment the quantity of the product on click of the button
         increment.onclick = () => {
             let index = cart.indexOf(cart.find(p => p.id === product.id));
             cart[index].quantity++;
@@ -94,7 +97,7 @@ if (cart.length === 0) {
             localStorage.setItem("cart", JSON.stringify(cart));
         }
 
-        // adding click event to remove buttons
+        // adding click event to remove buttons that will remove the specified product
         removeButton.onclick = function(e) {
             e.preventDefault();
             cart.splice(cart.indexOf(cart.find(p => p.id === product.id)), 1);

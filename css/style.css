@@ -95,6 +95,19 @@ form > button {
     }
 }
 
+@media (max-width: 768px) {
+    #products-list {
+        width: 100vw !important;
+        margin-left: 0;
+        border: 2px solid red;
+    }
+
+    table {
+        width: 100% !important;
+        margin-left: 0 !important;
+    }
+}
+
 @media (max-width: 668px) {
     form > input {
         width: 60% !important;
