@@ -72,7 +72,7 @@ if (cart.length === 0) {  // if there are no items in the cart
                 }
                 total = 0;
                 cart.forEach(p => total += p.quantity * p.price);
-                totalPrice.innerText = total.toFixed(2);
+                totalPrice.innerText = `$${total.toFixed(2)}`;
             } else {
                 let index = cart.indexOf(cart.find(p => p.id === product.id));
                 cart[index].quantity--;
@@ -80,7 +80,7 @@ if (cart.length === 0) {  // if there are no items in the cart
                 priceCell.innerText = `$${product.price} * ${product.quantity} = $${(product.price * product.quantity).toFixed(2)}`;
                 total = 0;
                 cart.forEach(p => total += p.quantity * p.price);
-                totalPrice.innerText = total.toFixed(2);
+                totalPrice.innerText = `$${total.toFixed(2)}`;
                 localStorage.setItem("cart", JSON.stringify(cart));
             }
         }
@@ -93,7 +93,7 @@ if (cart.length === 0) {  // if there are no items in the cart
             priceCell.innerText = `$${product.price} * ${product.quantity} = $${product.price * product.quantity}`;
             total = 0;
             cart.forEach(p => total += p.quantity * p.price);
-            totalPrice.innerText = total.toFixed(2);
+            totalPrice.innerText = `$${total.toFixed(2)}`;
             localStorage.setItem("cart", JSON.stringify(cart));
         }
 
@@ -110,7 +110,7 @@ if (cart.length === 0) {  // if there are no items in the cart
             productQuantity();
             total = 0;
             cart.forEach(p => total += p.quantity * p.price);
-            totalPrice.innerText = total.toFixed(2);
+            totalPrice.innerText = `$${total.toFixed(2)}`;
         }
 
         // appending elements to the parent elements
@@ -136,7 +136,7 @@ if (cart.length === 0) {  // if there are no items in the cart
     let totalPrice = document.createElement("span");
     totalPrice.style.fontWeight = "bold";
     totalPrice.style.fontSize = "20px";
-    totalPrice.innerText = total.toFixed(2);
+    totalPrice.innerText = `$${total.toFixed(2)}`;
     totalPriceCell.appendChild(totalPrice);
     totalPriceRow.appendChild(totalPriceCell);
     table.appendChild(totalPriceRow);
