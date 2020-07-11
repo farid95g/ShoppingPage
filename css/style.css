@@ -97,14 +97,20 @@ form > button {
 
 @media (max-width: 768px) {
     #products-list {
-        width: 100vw !important;
+        width: 100% !important;
         margin-left: 0;
-        border: 2px solid red;
     }
 
     table {
         width: 100% !important;
-        margin-left: 0 !important;
+    }
+
+    table img {
+        width: 100px;
+    }
+
+    table td, span, i {
+        font-size: 14px !important;
     }
 }
 
@@ -127,6 +133,14 @@ form > button {
 
     .product-info p {
         padding: 0;
+    }
+
+    table > thead > tr > th:nth-child(1), th:nth-child(2) {
+        display: none;
+    }
+
+    table > tbody > tr th {
+        display: none;
     }
 }
 

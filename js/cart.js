@@ -119,6 +119,11 @@ if (cart.length === 0) {  // if there are no items in the cart
         removeCell.appendChild(removeButton);
         row.append(orderCell, imgCell, nameCell, priceCell, quantityCell, removeCell);
         table.lastElementChild.appendChild(row);
+
+        // some functionalities for responsiveness of the table
+        if (screen.width < 578) {
+            imgCell.style.display = "none";
+        }
     });
 
     // adding last table cell for showing the total price of purchased items
@@ -135,6 +140,13 @@ if (cart.length === 0) {  // if there are no items in the cart
     totalPriceCell.appendChild(totalPrice);
     totalPriceRow.appendChild(totalPriceCell);
     table.appendChild(totalPriceRow);
+
+    // some functionalities for responsiveness of the table
+    if (screen.width < 768) {
+        products.classList.remove("container");
+        totalPriceCell.classList.remove("text-right");
+        totalPriceCell.classList.add("text-left");
+    }
 }
 
 // function for changing the product quantity near the shopping cart icon
